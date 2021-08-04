@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Tags Predictor</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  </head>
+
+  <body>
+  
+    <div class="content">
+      <header>
+        <div class="header-background"></div>
+        <div class="title">
+          <h1>
+            Tags Predictor
+          </h1>
+        </div>
+      </header>
+      
+      <main>
+        <div class="chartContainer">
+        </div>
+      </main>
+    </div>
+      
+    <div>
+        <div>
+        <input type="text" name="Title" id="title" placeholder="Enter the title">
+            <br/>
+            <br/>
+            <textarea name="Question" id="question" placeholder="Enter your question"></textarea>
+        </div>
+        <button type="submit" value="Submit" id="sub"> Get my Tags !</button>
+        <br/>
+        <div>
+            <h3> My Tags </h3>
+        </div>
+        <div id="result" style="margin:20px">
+            
+        </div>
+            
+      
+    </div>
+      
+    <script>
+        $( "#sub" ).click(function() {
+            var title = $( "#title" ).val();
+            var question = $( "#question" ).val();
+            var url = "/api/tags_prediction?title="+title+"&question="+question;
+            $.get( url, function(data) {
+                tags = data["title"]+" "+data["question"]
+                $( "#result" ).text(tags)
+            })
+         });
+        
+    </script>
+      
+      
+    
+  </body>
+  
+</html>
